@@ -1,15 +1,22 @@
-import pytest
+import pytest 
+ 
+ 
 @pytest.mark.parametrize( 
-    "bad_student_id", 
-    ["1234567", "s1234567", "S123", "S12345678"], 
+    "bad_sid", 
+    [ 
+        "BAD123", 
+        "s1234567", 
+        "S123", 
+        "S12345678", 
+    ], 
 ) 
-def test_bad_student_id_returns_422(client, bad_student_id): 
+def test_invalid_student_id_returns_422(client, bad_sid): 
     response = client.post( 
         "/api/users", 
-        json=user_payload(uid=3, student_id=bad_student_id), 
+        json=user_payload(sid=bad_sid), 
     ) 
  
-    assert response.status_code == 422
+    assert response.status_code == 422 
 
 def user_payload( 
     name="Paul", 
