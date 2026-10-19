@@ -61,11 +61,13 @@ Terminal 1 — Product Service, port 8001:
 
 ```bash
 python -m uvicorn product_service.main:app --host 0.0.0.0 --port 8001 --reload
+bash````
 
 Terminal 2 — User API, port 8000:
 
 ```bash
 python -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+bash````
 
 --host 0.0.0.0 is only the address Uvicorn binds to. Requests from the User API still use http://127.0.0.1:8001. Stop both processes before running python -m pytest. The tests replace the product client and do not need Product Service to be running.
 
